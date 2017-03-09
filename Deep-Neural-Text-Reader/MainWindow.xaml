@@ -48,15 +48,19 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                    <Rectangle VerticalAlignment="Stretch" Width="0" Margin="10" Stroke="Black" />
+                    <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Content="Inputs and outputs:" FontSize="18"/>
                     <Label Content="Inputs count:"/>
                     <TextBox/>
                     <Label Content="Output count:"/>
                     <TextBox/>
-                    <Rectangle VerticalAlignment="Stretch" Width="0" Margin="10" Stroke="Black" />
+                    <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Content="Learning iterations:" FontSize="18"/>
                     <Slider/>
+                    <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
+                    <Label Content="Training alphabet:" FontSize="18"/>
+                    <Label Content="PATH: ???"/>
+                    <Button Content="Select file..." />
                 </StackPanel>
             </ScrollViewer>
 
