@@ -22,7 +22,7 @@
             </MenuItem>
         </Menu>
         
-        <Grid ShowGridLines="True" Grid.Row="1">
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
@@ -32,6 +32,33 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+            <ScrollViewer Grid.Column="1" Grid.RowSpan="3">
+                <StackPanel>
+                    <Label Content="Settings:" FontSize="32" FontWeight="Bold" />
+                    <Label Content="Add new layer:" FontSize="18"/>
+                    <Label Content="Neurons count:"/>
+                    <TextBox/>
+                    <Button Content="Add" />
+                    <ListView>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" Width="40" />
+                                <GridViewColumn Header="Neurons" Width="120" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <Rectangle VerticalAlignment="Stretch" Width="0" Margin="10" Stroke="Black" />
+                    <Label Content="Inputs and outputs:" FontSize="18"/>
+                    <Label Content="Inputs count:"/>
+                    <TextBox/>
+                    <Label Content="Output count:"/>
+                    <TextBox/>
+                    <Rectangle VerticalAlignment="Stretch" Width="0" Margin="10" Stroke="Black" />
+                    <Label Content="Learning iterations:" FontSize="18"/>
+                    <Slider/>
+                </StackPanel>
+            </ScrollViewer>
 
         </Grid>
         
