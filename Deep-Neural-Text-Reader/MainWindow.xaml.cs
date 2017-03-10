@@ -15,6 +15,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.Wpf;
+
 namespace Deep_Neural_Text_Reader
 {
     /// <summary>
@@ -22,13 +26,45 @@ namespace Deep_Neural_Text_Reader
     /// </summary>
     public partial class MainWindow : Window
     {
+        SystemMonitor systemMonitor;
+
         private Network network;
 
         public MainWindow()
         {
             InitializeComponent();
 
+            timerInitializer();
+            setSystemMonitor();
+
             TestNetwork();
+        }
+
+        private void timerInitializer()
+        {
+            Timer timer = new Timer();
+            timer.Interval = (1000);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            updateCpuAndRam();
+        }
+
+        private void setSystemMonitor()
+        {
+            systemMonitor = new SystemMonitor();
+            ramUsageGauge.To = systemMonitor.getTotalRam();
+        }
+
+        private void updateCpuAndRam()
+        {
+            cpuUsageGauge.Value = systemMonitor.getCpuUsage();
+            ramUsageGauge.Value = ramUsageGauge.To - systemMonitor.getRamUsage();
+
+            
         }
 
         public void TestNetwork()
