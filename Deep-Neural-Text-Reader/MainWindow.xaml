@@ -6,7 +6,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Deep_Neural_Text_Reader"
         mc:Ignorable="d"
-        Title="Deep Neural Text Reader" Height="720" Width="1280">
+        Title="Deep Neural Text Reader" Height="720" Width="1280"
+        MinHeight="360" MinWidth="640">
 
     <Grid>
         <Grid.RowDefinitions>

@@ -15,6 +15,7 @@ namespace Deep_Neural_Text_Reader
         public SystemMonitor()
         {
             cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
+            cpuCounter.NextValue();
             ramCounter = new PerformanceCounter("Memory", "Available MBytes");
         }
 
