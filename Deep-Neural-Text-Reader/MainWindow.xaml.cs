@@ -24,11 +24,14 @@ namespace Deep_Neural_Text_Reader
     /// </summary>
     public partial class MainWindow : Window
     {
+        SystemMonitor systemMonitor;
+
         public MainWindow()
         {
             InitializeComponent();
 
             timerInitializer();
+            setSystemMonitor();
         }
 
         private void timerInitializer()
@@ -41,7 +44,19 @@ namespace Deep_Neural_Text_Reader
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            updateCpuAndRam();
+        }
 
+        private void setSystemMonitor()
+        {
+            systemMonitor = new SystemMonitor();
+            ramUsageGauge.To = systemMonitor.getTotalRam();
+        }
+
+        private void updateCpuAndRam()
+        {
+            cpuUsageGauge.Value = systemMonitor.getCpuUsage();
+            ramUsageGauge.Value = ramUsageGauge.To - systemMonitor.getRamUsage();
         }
     }
 }

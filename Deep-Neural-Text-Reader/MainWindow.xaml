@@ -84,7 +84,7 @@
                    From="0" To="100" Value="0" />
                 <lvc:Gauge Name="ramUsageGauge" Grid.Row="0" Grid.Column="1" Margin="5"
                    Uses360Mode="True"
-                   From="0" To="100" Value="0" />
+                   From="0" To="1" Value="0" />
                 <lvc:Gauge Name="progressGauge" Grid.Row="0" Grid.Column="2" Margin="5"
                    Uses360Mode="True"
                    From="0" To="100" Value="0" />
