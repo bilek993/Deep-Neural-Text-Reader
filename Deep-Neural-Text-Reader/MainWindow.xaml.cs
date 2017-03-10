@@ -14,6 +14,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 using System.Windows.Forms;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace Deep_Neural_Text_Reader
 {
