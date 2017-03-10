@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Windows.Forms;
+
 namespace Deep_Neural_Text_Reader
 {
     /// <summary>
@@ -23,6 +25,21 @@ namespace Deep_Neural_Text_Reader
         public MainWindow()
         {
             InitializeComponent();
+
+            timerInitializer();
+        }
+
+        private void timerInitializer()
+        {
+            Timer timer = new Timer();
+            timer.Interval = (1000);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.Start();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+
         }
     }
 }

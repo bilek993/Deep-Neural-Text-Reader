@@ -64,6 +64,21 @@
                 </StackPanel>
             </ScrollViewer>
 
+            <Grid Grid.Column="0" Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Content="CPU" FontSize="16" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1"/>
+                <Label Content="RAM" FontSize="16" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1"/>
+                <Label Content="PROGRESS" FontSize="16" HorizontalAlignment="Center" Grid.Column="2" Grid.Row="1"/>
+            </Grid>
         </Grid>
         
     </Grid>
