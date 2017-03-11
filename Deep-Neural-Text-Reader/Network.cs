@@ -19,9 +19,6 @@ namespace Deep_Neural_Text_Reader
 
         public int iterationCount { set; get; }
 
-        public double[][] input { set; get; }
-        public int[] output { set; get; }
-
         public Network(int inputsCount, int[] neuronsCount)
         {
             activationFunction = new BipolarSigmoidFunction();
@@ -32,7 +29,7 @@ namespace Deep_Neural_Text_Reader
             };
         }
 
-        public void Learn()
+        public void Learn(double[][] input, int[] output)
         {
             double[][] y = output.ToDouble().ToArray();
 

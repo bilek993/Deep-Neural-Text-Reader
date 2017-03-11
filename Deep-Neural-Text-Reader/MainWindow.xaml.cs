@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using LiveCharts;
 using LiveCharts.Wpf;
+using System.Threading;
 
 namespace Deep_Neural_Text_Reader
 {
@@ -40,7 +41,7 @@ namespace Deep_Neural_Text_Reader
 
         private void TimerInitializer()
         {
-            Timer timer = new Timer();
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = (1000);
             timer.Tick += new EventHandler(TimerTick);
             timer.Start();
@@ -63,7 +64,7 @@ namespace Deep_Neural_Text_Reader
             ramUsageGauge.Value = ramUsageGauge.To - systemMonitor.getRamUsage();        
         }
 
-        public void TestNetwork()
+        private void TestNetwork(object iterationsCount)
         {
             double[][] input = new double[][] {
                 new double[] { 0, 0 },
@@ -74,13 +75,11 @@ namespace Deep_Neural_Text_Reader
             int[] output = new int[] { 0, 1, 1, 0 };
 
             network = new Network(2, new[] { 2, 2, 1 });
-            network.iterationCount = (int)Math.Round(iterationsSlider.Value);
-            network.input = input;
-            network.output = output;
+            network.iterationCount = Convert.ToInt32(iterationsCount);
 
-            network.Learn();
+            network.Learn(input, output);
 
-            double[] answers = network.CalculateAnswer(network.input).GetColumn(0);
+            double[] answers = network.CalculateAnswer(input).GetColumn(0);
             int[] answers2 = new int[answers.Length];
             for (int j = 0; j < answers.Length; ++j)
             {
@@ -94,7 +93,8 @@ namespace Deep_Neural_Text_Reader
 
         private void MenuItemLearn_Click(object sender, RoutedEventArgs e)
         {
-            TestNetwork();
+            Thread thread = new Thread(TestNetwork);
+            thread.Start((int)Math.Round(iterationsSlider.Value));
         }
 
         private void IterationsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
