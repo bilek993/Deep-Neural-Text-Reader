@@ -90,6 +90,9 @@
                    Uses360Mode="True"
                    From="0" To="100" Value="0" />
             </Grid>
+
+            <lvc:CartesianChart Name="linearChartOfLearning" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  />
+
         </Grid>
         
     </Grid>
