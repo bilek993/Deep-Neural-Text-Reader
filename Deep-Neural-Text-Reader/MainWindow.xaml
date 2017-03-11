@@ -22,6 +22,9 @@
                 <MenuItem Header="Save" />
                 <MenuItem Header="Exit" />
             </MenuItem>
+            <MenuItem Header="_Learning">
+                <MenuItem Header="Start learning" Click="MenuItemLearn_Click" />
+            </MenuItem>
         </Menu>
         
         <Grid Grid.Row="1">
@@ -57,8 +60,8 @@
                     <Label Content="Output count:"/>
                     <TextBox/>
                     <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
-                    <Label Content="Learning iterations:" FontSize="18"/>
-                    <Slider/>
+                    <Label Name="iterationsLabel" Content="Learning iterations:" FontSize="18"/>
+                    <Slider Name="iterationsSlider" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="1" Maximum="10000" Value="250" ValueChanged="iterationsSlider_ValueChanged"/>
                     <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Content="Training alphabet:" FontSize="18"/>
                     <Label Content="PATH: ???"/>

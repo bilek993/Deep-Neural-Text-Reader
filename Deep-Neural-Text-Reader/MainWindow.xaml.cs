@@ -36,8 +36,6 @@ namespace Deep_Neural_Text_Reader
 
             timerInitializer();
             setSystemMonitor();
-
-            TestNetwork();
         }
 
         private void timerInitializer()
@@ -62,9 +60,7 @@ namespace Deep_Neural_Text_Reader
         private void updateCpuAndRam()
         {
             cpuUsageGauge.Value = systemMonitor.getCpuUsage();
-            ramUsageGauge.Value = ramUsageGauge.To - systemMonitor.getRamUsage();
-
-            
+            ramUsageGauge.Value = ramUsageGauge.To - systemMonitor.getRamUsage();        
         }
 
         public void TestNetwork()
@@ -78,7 +74,7 @@ namespace Deep_Neural_Text_Reader
             int[] output = new int[] { 0, 1, 1, 0 };
 
             network = new Network(2, new[] { 2, 2, 1 });
-            network.iterationCount = 100;
+            network.iterationCount = (int)Math.Round(iterationsSlider.Value);
             network.input = input;
             network.output = output;
 
@@ -94,6 +90,16 @@ namespace Deep_Neural_Text_Reader
 
             ScatterplotBox.Show("Expected answers", input, output);
             ScatterplotBox.Show("Network answers", input, answers2);
+        }
+
+        private void MenuItemLearn_Click(object sender, RoutedEventArgs e)
+        {
+            TestNetwork();
+        }
+
+        private void iterationsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            iterationsLabel.Content = "Learning iterations (" + iterationsSlider.Value + "):";
         }
     }
 }
