@@ -34,30 +34,30 @@ namespace Deep_Neural_Text_Reader
         {
             InitializeComponent();
 
-            timerInitializer();
-            setSystemMonitor();
+            TimerInitializer();
+            SetSystemMonitor();
         }
 
-        private void timerInitializer()
+        private void TimerInitializer()
         {
             Timer timer = new Timer();
             timer.Interval = (1000);
-            timer.Tick += new EventHandler(timer_Tick);
+            timer.Tick += new EventHandler(TimerTick);
             timer.Start();
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void TimerTick(object sender, EventArgs e)
         {
-            updateCpuAndRam();
+            UpdateCpuAndRam();
         }
 
-        private void setSystemMonitor()
+        private void SetSystemMonitor()
         {
             systemMonitor = new SystemMonitor();
             ramUsageGauge.To = systemMonitor.getTotalRam();
         }
 
-        private void updateCpuAndRam()
+        private void UpdateCpuAndRam()
         {
             cpuUsageGauge.Value = systemMonitor.getCpuUsage();
             ramUsageGauge.Value = ramUsageGauge.To - systemMonitor.getRamUsage();        
@@ -97,7 +97,7 @@ namespace Deep_Neural_Text_Reader
             TestNetwork();
         }
 
-        private void iterationsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        private void IterationsSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             iterationsLabel.Content = "Learning iterations (" + iterationsSlider.Value + "):";
         }
