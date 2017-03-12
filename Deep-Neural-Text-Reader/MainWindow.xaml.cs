@@ -46,6 +46,7 @@ namespace Deep_Neural_Text_Reader
             {
                 new LineSeries
                 {
+                    Title = "Error rate:",
                     Values = new ChartValues<double> {}
                 }
             };

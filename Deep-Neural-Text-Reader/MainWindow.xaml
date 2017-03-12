@@ -94,7 +94,14 @@
                    From="0" To="100" Value="0" />
             </Grid>
 
-            <lvc:CartesianChart Name="linearChartOfLearning" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"  />
+            <lvc:CartesianChart Name="linearChartOfLearning" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Title="Error"/>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Time"/>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
 
         </Grid>
         
