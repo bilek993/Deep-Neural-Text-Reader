@@ -146,7 +146,9 @@ namespace Deep_Neural_Text_Reader
 
             if (dialog.ShowDialog() == true)
             {
-                LoadLearnData(dialog.FileName);
+                string fileName = dialog.FileName;
+                pathLabel.Content = "PATH: " + fileName;
+                LoadLearnData(fileName);
             }
         }
 
