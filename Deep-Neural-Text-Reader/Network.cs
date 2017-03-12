@@ -17,6 +17,8 @@ namespace Deep_Neural_Text_Reader
         private ActivationNetwork network;
         private LevenbergMarquardtLearning teacher;
 
+        private int learningLoopIterator;
+
         public int iterationCount { set; get; }
 
         public Network(int inputsCount, int[] neuronsCount)
@@ -27,6 +29,7 @@ namespace Deep_Neural_Text_Reader
             {
                 UseRegularization = false
             };
+            learningLoopIterator = 0;
         }
 
         public void Learn(double[][] input, int[] output)
@@ -34,7 +37,7 @@ namespace Deep_Neural_Text_Reader
             double[][] y = output.ToDouble().ToArray();
 
             double error;
-            for (int i = 0; i < iterationCount; ++i)
+            for (learningLoopIterator = 0; learningLoopIterator < iterationCount; ++learningLoopIterator)
             {
                 error = teacher.RunEpoch(input, y);
             }
@@ -43,6 +46,11 @@ namespace Deep_Neural_Text_Reader
         public double[][] CalculateAnswer(double[][] input)
         {
             return input.Apply(network.Compute);
+        }
+
+        public int CalculateProgress()
+        {
+            return (learningLoopIterator*100)/iterationCount;
         }
     }
 }

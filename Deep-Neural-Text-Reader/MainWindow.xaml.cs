@@ -50,6 +50,7 @@ namespace Deep_Neural_Text_Reader
         private void TimerTick(object sender, EventArgs e)
         {
             UpdateCpuAndRam();
+            UpdateProgress();
         }
 
         private void SetSystemMonitor()
@@ -62,6 +63,12 @@ namespace Deep_Neural_Text_Reader
         {
             cpuUsageGauge.Value = systemMonitor.getCpuUsage();
             ramUsageGauge.Value = ramUsageGauge.To - systemMonitor.getRamUsage();        
+        }
+
+        private void UpdateProgress()
+        {
+            if (network != null)
+                progressGauge.Value = network.CalculateProgress();
         }
 
         private void TestNetwork(object iterationsCount)
