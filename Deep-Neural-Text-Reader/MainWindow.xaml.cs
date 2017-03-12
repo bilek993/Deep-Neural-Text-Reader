@@ -28,7 +28,7 @@ namespace Deep_Neural_Text_Reader
     public partial class MainWindow : Window
     {
         SystemMonitor systemMonitor;
-
+        private SeriesCollection errorCollections;
         private Network network;
 
         public MainWindow()
@@ -37,6 +37,19 @@ namespace Deep_Neural_Text_Reader
 
             TimerInitializer();
             SetSystemMonitor();
+            InitializeLinearChart();
+        }
+
+        private void InitializeLinearChart()
+        {
+            errorCollections = new SeriesCollection
+            {
+                new LineSeries
+                {
+                    Values = new ChartValues<double> {}
+                }
+            };
+            linearChartOfLearning.Series = errorCollections;
         }
 
         private void TimerInitializer()
@@ -51,6 +64,7 @@ namespace Deep_Neural_Text_Reader
         {
             UpdateCpuAndRam();
             UpdateProgress();
+            UpdateLearningGraph();
         }
 
         private void SetSystemMonitor()
@@ -69,6 +83,13 @@ namespace Deep_Neural_Text_Reader
         {
             if (network != null)
                 progressGauge.Value = network.CalculateProgress();
+        }
+
+        private void UpdateLearningGraph()
+        {
+            if (network != null)
+                if (network.CalculateProgress() < 100)
+                    errorCollections[0].Values.Add(network.error);
         }
 
         private void TestNetwork(object iterationsCount)
@@ -92,14 +113,12 @@ namespace Deep_Neural_Text_Reader
             {
                 answers2[j] = (int)Math.Round(answers[j]);
             }
-
-
-            ScatterplotBox.Show("Expected answers", input, output);
-            ScatterplotBox.Show("Network answers", input, answers2);
         }
 
         private void MenuItemLearn_Click(object sender, RoutedEventArgs e)
         {
+            errorCollections[0].Values.Clear();
+
             Thread thread = new Thread(TestNetwork);
             thread.Start((int)Math.Round(iterationsSlider.Value));
         }

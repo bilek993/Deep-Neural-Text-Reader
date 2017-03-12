@@ -20,6 +20,7 @@ namespace Deep_Neural_Text_Reader
         private int learningLoopIterator;
 
         public int iterationCount { set; get; }
+        public double error { set; get; }
 
         public Network(int inputsCount, int[] neuronsCount)
         {
@@ -36,7 +37,6 @@ namespace Deep_Neural_Text_Reader
         {
             double[][] y = output.ToDouble().ToArray();
 
-            double error;
             for (learningLoopIterator = 0; learningLoopIterator < iterationCount; ++learningLoopIterator)
             {
                 error = teacher.RunEpoch(input, y);
