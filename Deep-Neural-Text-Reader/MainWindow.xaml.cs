@@ -93,7 +93,7 @@ namespace Deep_Neural_Text_Reader
                     errorCollections[0].Values.Add(network.error);
         }
 
-        private void TestNetwork(object iterationsCount)
+        private void LearnNetwork(object iterationsCount)
         {
             double[][] input = new double[][] {
                 new double[] { 0, 0 },
@@ -120,7 +120,7 @@ namespace Deep_Neural_Text_Reader
         {
             errorCollections[0].Values.Clear();
 
-            Thread thread = new Thread(TestNetwork);
+            Thread thread = new Thread(LearnNetwork);
             thread.Start((int)Math.Round(iterationsSlider.Value));
         }
 
