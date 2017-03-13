@@ -94,7 +94,7 @@ namespace Deep_Neural_Text_Reader
         private void UpdateLearningGraph()
         {
             if (network != null)
-                if (network.CalculateProgress() < 100)
+                if (network.CalculateProgress() < 100 && network.error > 0)
                     errorCollections[0].Values.Add(network.error);
         }
 

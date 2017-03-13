@@ -61,7 +61,7 @@
                     <TextBox/>
                     <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Name="iterationsLabel" Content="Learning iterations:" FontSize="18"/>
-                    <Slider Name="iterationsSlider" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="1" Maximum="10000" Value="250" ValueChanged="IterationsSlider_ValueChanged"/>
+                    <Slider Name="iterationsSlider" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="1" Maximum="1000" Value="250" ValueChanged="IterationsSlider_ValueChanged"/>
                     <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Content="Training alphabet:" FontSize="18"/>
                     <Label Name="pathLabel" Content="PATH: ???"/>
