@@ -185,5 +185,10 @@ namespace Deep_Neural_Text_Reader
                 numberOfNeuronsTextBox.Text = "Problem with parsing data!";
             }
         }
+
+        private void RemoveHiddenLayer_Click(object sender, RoutedEventArgs e)
+        {
+            neuronsList.Items.RemoveAt(neuronsList.SelectedIndex);
+        }
     }
 }

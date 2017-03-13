@@ -44,7 +44,16 @@
                     <Label Content="Add new hidden layer:" FontSize="18"/>
                     <Label Content="Neurons count:"/>
                     <TextBox Name="numberOfNeuronsTextBox" />
-                    <Button Content="Add" Click="AddHiddenLayer_Click" />
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Content="Add" Click="AddHiddenLayer_Click" Grid.Column="0" />
+                        <Button Content="Remove selected" Grid.Column="1" Click="RemoveHiddenLayer_Click" />
+                    </Grid>
+
                     <ListView Name="neuronsList">
                         <ListView.View>
                             <GridView>
