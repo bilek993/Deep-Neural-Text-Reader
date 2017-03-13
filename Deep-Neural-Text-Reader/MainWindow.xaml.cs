@@ -150,5 +150,19 @@ namespace Deep_Neural_Text_Reader
             }
         }
 
+        private void FileExit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void Open_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }

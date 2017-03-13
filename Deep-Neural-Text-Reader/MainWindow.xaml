@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Deep_Neural_Text_Reader"
         mc:Ignorable="d"
         Title="Deep Neural Text Reader" Height="720" Width="1280"
-        MinHeight="360" MinWidth="640">
+        MinHeight="360" MinWidth="640" Closed="Window_Closed">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,9 +18,9 @@
         <Menu Grid.Row="0" IsMainMenu="True">
             <MenuItem Header="_File">
                 <MenuItem Header="New" />
-                <MenuItem Header="Open" />
+                <MenuItem Header="Open" Click="Open_Click" />
                 <MenuItem Header="Save" />
-                <MenuItem Header="Exit" />
+                <MenuItem Header="Exit" Click="FileExit_Click" />
             </MenuItem>
             <MenuItem Header="_Learning">
                 <MenuItem Header="Start learning" Click="MenuItemLearn_Click" />
