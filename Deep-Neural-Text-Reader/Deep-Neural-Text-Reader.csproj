@@ -107,6 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LearnDataLoader.cs" />
     <Compile Include="SystemMonitor.cs" />
     <Compile Include="Network.cs" />
     <Page Include="MainWindow.xaml">

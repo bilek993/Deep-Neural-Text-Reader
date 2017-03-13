@@ -13,6 +13,8 @@ namespace Deep_Neural_Text_Reader
 {
     class Network
     {
+        public const int OUTPUTS_COUNT = 36;
+
         private IActivationFunction activationFunction;
         private ActivationNetwork network;
         private LevenbergMarquardtLearning teacher;
