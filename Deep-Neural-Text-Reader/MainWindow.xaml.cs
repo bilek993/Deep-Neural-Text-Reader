@@ -103,8 +103,11 @@ namespace Deep_Neural_Text_Reader
             if (inputsForLearn == null || outputsForLearn == null)
                 return;
 
-            network = new Network(inputsForLearn[0].Length, new[] { 10, 5, 10, Network.OUTPUTS_COUNT });
-            network.iterationCount = Convert.ToInt32(iterationsCount);
+            if (network == null)
+            {
+                network = new Network(inputsForLearn[0].Length, new[] { 10, 5, 10, Network.OUTPUTS_COUNT });
+                network.iterationCount = Convert.ToInt32(iterationsCount);
+            }
 
             network.Learn(inputsForLearn, outputsForLearn);
 
