@@ -106,8 +106,8 @@ namespace Deep_Neural_Text_Reader
             if (network == null)
             {
                 network = new Network(inputsForLearn[0].Length, GetHiddenLayers());
-                network.iterationCount = Convert.ToInt32(iterationsCount);
             }
+            network.iterationCount = Convert.ToInt32(iterationsCount);
 
             network.Learn(inputsForLearn, outputsForLearn);
 
@@ -180,14 +180,33 @@ namespace Deep_Neural_Text_Reader
             outputSizeLabel.Content = "Output count: " + Network.OUTPUTS_COUNT;
         }
 
-        private void FileExit_Click(object sender, RoutedEventArgs e)
+        private void MenuItemFileExit_Click(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
         }
 
-        private void Open_Click(object sender, RoutedEventArgs e)
+        private void MenuItemNew_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemSave_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dialog = new Microsoft.Win32.SaveFileDialog();
+            dialog.Filter = "Text files (*.txt)|*.txt|All files|*.*";
+            dialog.InitialDirectory = Environment.CurrentDirectory;
+
+            if (dialog.ShowDialog() == true && network != null)
+            {
+                ConfigFileManager configFileManager = new ConfigFileManager();
+                configFileManager.iterationsCount = (int)Math.Round(iterationsSlider.Value);
+                configFileManager.SaveConfig(dialog.FileName, network);
+            }
         }
 
         private void Window_Closed(object sender, EventArgs e)

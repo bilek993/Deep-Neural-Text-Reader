@@ -22,10 +22,15 @@ namespace Deep_Neural_Text_Reader
         private int learningLoopIterator;
 
         public int iterationCount { set; get; }
+        public int inputsCount { get; }
+        public int[] neuronsCount { get; }
         public double error { set; get; }
 
         public Network(int inputsCount, int[] neuronsCount)
         {
+            this.inputsCount = inputsCount;
+            this.neuronsCount = neuronsCount;
+
             activationFunction = new BipolarSigmoidFunction();
             network = new ActivationNetwork(activationFunction, inputsCount, neuronsCount);
             teacher = new LevenbergMarquardtLearning(network)
@@ -53,6 +58,11 @@ namespace Deep_Neural_Text_Reader
         public int CalculateProgress()
         {
             return (learningLoopIterator*100)/iterationCount;
+        }
+
+        public void SaveNetwork(string fileName)
+        {
+            network.Save(fileName);
         }
     }
 }

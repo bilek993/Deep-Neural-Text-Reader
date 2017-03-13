@@ -107,6 +107,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConfigFileManager.cs" />
     <Compile Include="LearnDataLoader.cs" />
     <Compile Include="NeuronItem.cs" />
     <Compile Include="SystemMonitor.cs" />
