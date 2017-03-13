@@ -105,7 +105,7 @@ namespace Deep_Neural_Text_Reader
 
             if (network == null)
             {
-                network = new Network(inputsForLearn[0].Length, new[] { 10, 5, 10, Network.OUTPUTS_COUNT });
+                network = new Network(inputsForLearn[0].Length, GetHiddenLayers());
                 network.iterationCount = Convert.ToInt32(iterationsCount);
             }
 
@@ -117,6 +117,20 @@ namespace Deep_Neural_Text_Reader
             {
                 answers2[j] = (int)Math.Round(answers[j]);
             }
+        }
+
+        private int[] GetHiddenLayers()
+        {
+            int[] hiddenLayers = new int[neuronsList.Items.Count + 1];
+            hiddenLayers[hiddenLayers.Length - 1] = Network.OUTPUTS_COUNT;
+
+            for (int i = 0; i < hiddenLayers.Length - 1; i++)
+            {
+                NeuronItem item = neuronsList.Items.GetItemAt(i) as NeuronItem;
+                hiddenLayers[i] = item.Neurons;
+            }
+
+            return hiddenLayers;
         }
 
         private void MenuItemLearn_Click(object sender, RoutedEventArgs e)
