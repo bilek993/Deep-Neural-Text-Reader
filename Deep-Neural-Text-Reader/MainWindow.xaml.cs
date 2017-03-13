@@ -171,5 +171,19 @@ namespace Deep_Neural_Text_Reader
         {
             Environment.Exit(0);
         }
+
+        private void AddHiddenLayer_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int neuronsCount = Int32.Parse(numberOfNeuronsTextBox.Text);
+                numberOfNeuronsTextBox.Text = "";
+                neuronsList.Items.Add(new NeuronItem { Id = neuronsList.Items.Count, Neurons = neuronsCount });
+            }
+            catch
+            {
+                numberOfNeuronsTextBox.Text = "Problem with parsing data!";
+            }
+        }
     }
 }

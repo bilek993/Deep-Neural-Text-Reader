@@ -41,15 +41,15 @@
             <ScrollViewer Grid.Column="1" Grid.RowSpan="3">
                 <StackPanel>
                     <Label Content="Settings:" FontSize="32" FontWeight="Bold" />
-                    <Label Content="Add new layer:" FontSize="18"/>
+                    <Label Content="Add new hidden layer:" FontSize="18"/>
                     <Label Content="Neurons count:"/>
-                    <TextBox/>
-                    <Button Content="Add" />
-                    <ListView>
+                    <TextBox Name="numberOfNeuronsTextBox" />
+                    <Button Content="Add" Click="AddHiddenLayer_Click" />
+                    <ListView Name="neuronsList">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Id" Width="40" />
-                                <GridViewColumn Header="Neurons" Width="120" />
+                                <GridViewColumn Header="Id" Width="40" DisplayMemberBinding="{Binding Id}" />
+                                <GridViewColumn Header="Neurons" Width="120" DisplayMemberBinding="{Binding Neurons}" />
                             </GridView>
                         </ListView.View>
                     </ListView>

@@ -108,6 +108,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="LearnDataLoader.cs" />
+    <Compile Include="NeuronItem.cs" />
     <Compile Include="SystemMonitor.cs" />
     <Compile Include="Network.cs" />
     <Page Include="MainWindow.xaml">
