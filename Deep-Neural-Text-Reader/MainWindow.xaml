@@ -50,8 +50,8 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Button Content="Add" Click="AddHiddenLayer_Click" Grid.Column="0" />
-                        <Button Content="Remove selected" Grid.Column="1" Click="RemoveHiddenLayer_Click" />
+                        <Button Name="buttonAdd" Content="Add" Click="AddHiddenLayer_Click" Grid.Column="0" />
+                        <Button Name="buttonRemove" Content="Remove selected" Grid.Column="1" Click="RemoveHiddenLayer_Click" />
                     </Grid>
 
                     <ListView Name="neuronsList">

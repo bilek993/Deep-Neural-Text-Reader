@@ -133,8 +133,17 @@ namespace Deep_Neural_Text_Reader
             return hiddenLayers;
         }
 
+        private void LockNeuronList()
+        {
+            neuronsList.IsEnabled = false;
+            numberOfNeuronsTextBox.IsEnabled = false;
+            buttonAdd.IsEnabled = false;
+            buttonRemove.IsEnabled = false;
+        }
+
         private void MenuItemLearn_Click(object sender, RoutedEventArgs e)
         {
+            LockNeuronList();
             errorCollections[0].Values.Clear();
 
             Thread thread = new Thread(LearnNetwork);
