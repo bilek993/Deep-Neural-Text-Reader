@@ -100,20 +100,15 @@ namespace Deep_Neural_Text_Reader
 
         private void LearnNetwork(object iterationsCount)
         {
-            double[][] input = new double[][] {
-                new double[] { 0, 0 },
-                new double[] { 0, 1 },
-                new double[] { 1, 0 },
-                new double[] { 1, 1 }
-            };
-            int[] output = new int[] { 0, 1, 1, 0 };
+            if (inputsForLearn == null || outputsForLearn == null)
+                return;
 
-            network = new Network(2, new[] { 4, 2, 1 });
+            network = new Network(inputsForLearn[0].Length, new[] { 10, 5, 10, Network.OUTPUTS_COUNT });
             network.iterationCount = Convert.ToInt32(iterationsCount);
 
-            network.Learn(input, output);
+            network.Learn(inputsForLearn, outputsForLearn);
 
-            double[] answers = network.CalculateAnswer(input).GetColumn(0);
+            double[] answers = network.CalculateAnswer(inputsForLearn).GetColumn(0);
             int[] answers2 = new int[answers.Length];
             for (int j = 0; j < answers.Length; ++j)
             {

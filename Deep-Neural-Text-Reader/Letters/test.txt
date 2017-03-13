@@ -1,0 +1,2 @@
+x.bmp;X
+o.bmp;O

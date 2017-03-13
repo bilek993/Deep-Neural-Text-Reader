@@ -35,9 +35,9 @@ namespace Deep_Neural_Text_Reader
             learningLoopIterator = 0;
         }
 
-        public void Learn(double[][] input, int[] output)
+        public void Learn(double[][] input, int[][] output)
         {
-            double[][] y = output.ToDouble().ToArray();
+            double[][] y = output.ToDouble();
 
             for (learningLoopIterator = 0; learningLoopIterator < iterationCount; ++learningLoopIterator)
             {

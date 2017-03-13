@@ -30,7 +30,7 @@ namespace Deep_Neural_Text_Reader
             }
         }
 
-        public async void LoadLearnData(string fileName)
+        public void LoadLearnData(string fileName)
         {
             if (File.Exists(fileName))
             {
@@ -41,7 +41,7 @@ namespace Deep_Neural_Text_Reader
                 using (StreamReader reader = new StreamReader(fileName))
                 {
                     string line;
-                    while ((line = await reader.ReadLineAsync()) != null)
+                    while ((line = reader.ReadLine()) != null)
                     {
                         ++linesCount;
                         lines.Add(line);
