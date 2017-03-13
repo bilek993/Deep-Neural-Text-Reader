@@ -147,7 +147,14 @@ namespace Deep_Neural_Text_Reader
                 loader.LoadLearnData(fileName);
                 inputsForLearn = loader.Inputs;
                 outputsForLearn = loader.Outputs;
+                SetInputAndOutputLabels(inputsForLearn[0].Length);
             }
+        }
+
+        private void SetInputAndOutputLabels(int inputSize)
+        {
+            inputSizeLabel.Content = "Inputs count: " + inputSize.ToString();
+            outputSizeLabel.Content = "Output count: " + Network.OUTPUTS_COUNT;
         }
 
         private void FileExit_Click(object sender, RoutedEventArgs e)

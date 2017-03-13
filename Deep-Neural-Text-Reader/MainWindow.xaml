@@ -55,10 +55,8 @@
                     </ListView>
                     <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Content="Inputs and outputs:" FontSize="18"/>
-                    <Label Content="Inputs count:"/>
-                    <TextBox/>
-                    <Label Content="Output count:"/>
-                    <TextBox/>
+                    <Label Name="inputSizeLabel" Content="Inputs count: ???"/>
+                    <Label Name="outputSizeLabel" Content="Output count: ???"/>
                     <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Name="iterationsLabel" Content="Learning iterations:" FontSize="18"/>
                     <Slider Name="iterationsSlider" IsSnapToTickEnabled="True" TickFrequency="1" Minimum="1" Maximum="1000" Value="250" ValueChanged="IterationsSlider_ValueChanged"/>
