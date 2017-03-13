@@ -192,7 +192,27 @@ namespace Deep_Neural_Text_Reader
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)
         {
+            Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
+            dialog.Filter = "Text files (*.txt)|*.txt|All files|*.*";
+            dialog.InitialDirectory = Environment.CurrentDirectory;
 
+            if (dialog.ShowDialog() == true)
+            {
+                ConfigFileManager configFileManager = new ConfigFileManager();
+
+                network = configFileManager.LoadConfig(dialog.FileName);
+
+                iterationsSlider.Value = configFileManager.iterationsCount;
+                inputSizeLabel.Content = network.InputsCount;
+                outputSizeLabel.Content = network.OutputsCount;
+
+                for (int i = 0; i < network.NeuronsCount.Length - 1; ++i)
+                {
+                    AddHiddenLayer(network.NeuronsCount[i]);
+                }
+                LockNeuronList();
+
+            }
         }
 
         private void MenuItemSave_Click(object sender, RoutedEventArgs e)
@@ -220,12 +240,17 @@ namespace Deep_Neural_Text_Reader
             {
                 int neuronsCount = Int32.Parse(numberOfNeuronsTextBox.Text);
                 numberOfNeuronsTextBox.Text = "";
-                neuronsList.Items.Add(new NeuronItem { Id = neuronsList.Items.Count, Neurons = neuronsCount });
+                AddHiddenLayer(neuronsCount);
             }
             catch
             {
                 numberOfNeuronsTextBox.Text = "Problem with parsing data!";
             }
+        }
+
+        private void AddHiddenLayer(int neuronsCount)
+        {
+            neuronsList.Items.Add(new NeuronItem { Id = neuronsList.Items.Count, Neurons = neuronsCount });
         }
 
         private void RemoveHiddenLayer_Click(object sender, RoutedEventArgs e)

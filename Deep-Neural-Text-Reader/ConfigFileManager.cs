@@ -18,13 +18,34 @@ namespace Deep_Neural_Text_Reader
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 writer.WriteLine(iterationsCount);
-                writer.WriteLine(network.inputsCount);
+                writer.WriteLine(network.InputsCount);
                 writer.WriteLine(Network.OUTPUTS_COUNT);
 
                 writer.WriteLine(networkFileName.Substring(fileName.LastIndexOf('\\') + 1));
             }
 
             network.SaveNetwork(networkFileName);
+        }
+
+        public Network LoadConfig(string fileName)
+        {
+            string directoryName = fileName.Substring(0, fileName.LastIndexOf('\\'));
+            string networkFileName = "";
+
+            Network network = new Network();
+
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                iterationsCount = network.iterationCount = Convert.ToInt32(reader.ReadLine());
+                reader.ReadLine();  // InputsCount - loaded from binary file
+                reader.ReadLine();  // OutputsCount
+
+                networkFileName = reader.ReadLine();
+            }
+
+            network.LoadNetwork(directoryName + "\\" + networkFileName);
+
+            return network;
         }
     }
 }

@@ -22,9 +22,38 @@ namespace Deep_Neural_Text_Reader
         private int learningLoopIterator;
 
         public int iterationCount { set; get; }
-        public int inputsCount { get; }
-        public int[] neuronsCount { get; }
+        private int inputsCount;
+        private int[] neuronsCount;
         public double error { set; get; }
+
+        public int InputsCount
+        {
+            get
+            {
+                return inputsCount;
+            }
+        }
+
+        public int OutputsCount
+        {
+            get
+            {
+                return network.Output.Length;
+            }
+        }
+
+        public int[] NeuronsCount
+        {
+            get
+            {
+                return neuronsCount;
+            }
+        }
+
+        public Network()
+        {
+
+        }
 
         public Network(int inputsCount, int[] neuronsCount)
         {
@@ -63,6 +92,24 @@ namespace Deep_Neural_Text_Reader
         public void SaveNetwork(string fileName)
         {
             network.Save(fileName);
+        }
+
+        public void LoadNetwork(string fileName)
+        {
+            network = (ActivationNetwork)ActivationNetwork.Load(fileName);
+
+            teacher = new LevenbergMarquardtLearning(network)
+            {
+                UseRegularization = false
+            };
+
+            inputsCount = network.Layers[0].InputsCount;
+            neuronsCount = new int[network.Layers.Length];
+
+            for (int i = 0; i < network.Layers.Length; ++i)
+            {
+                neuronsCount[i] = network.Layers[i].Neurons.Length;
+            }
         }
     }
 }
