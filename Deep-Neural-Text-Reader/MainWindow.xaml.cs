@@ -261,7 +261,7 @@ namespace Deep_Neural_Text_Reader
 
         private void TestSymbol_Click(object sender, RoutedEventArgs e)
         {
-            TestSymbolWindow testSymbolWindow = new TestSymbolWindow();
+            TestSymbolWindow testSymbolWindow = new TestSymbolWindow(network);
             testSymbolWindow.Show();
         }
     }

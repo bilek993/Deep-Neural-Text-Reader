@@ -11,7 +11,7 @@ using Accord.Controls;
 
 namespace Deep_Neural_Text_Reader
 {
-    class Network
+    public class Network
     {
         public const int OUTPUTS_COUNT = 36;
 

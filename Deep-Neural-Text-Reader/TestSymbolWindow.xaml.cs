@@ -19,9 +19,13 @@ namespace Deep_Neural_Text_Reader
     /// </summary>
     public partial class TestSymbolWindow : Window
     {
-        public TestSymbolWindow()
+        private Network network;
+
+        public TestSymbolWindow(Network network)
         {
             InitializeComponent();
+
+            this.network = network;
         }
     }
 }
