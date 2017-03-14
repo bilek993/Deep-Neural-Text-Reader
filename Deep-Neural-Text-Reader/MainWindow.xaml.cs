@@ -155,7 +155,7 @@ namespace Deep_Neural_Text_Reader
             iterationsLabel.Content = "Learning iterations (" + iterationsSlider.Value + "):";
         }
 
-        private void selectFileButton_Click(object sender, RoutedEventArgs e)
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
             dialog.Filter = "Text files (*.txt)|*.txt|All files|*.*";
@@ -187,7 +187,8 @@ namespace Deep_Neural_Text_Reader
 
         private void MenuItemNew_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Diagnostics.Process.Start(System.Windows.Application.ResourceAssembly.Location);
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void MenuItemOpen_Click(object sender, RoutedEventArgs e)

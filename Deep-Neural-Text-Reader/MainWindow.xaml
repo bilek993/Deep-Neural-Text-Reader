@@ -72,7 +72,7 @@
                     <Rectangle VerticalAlignment="Stretch" Width="0" Margin="15" Stroke="Black" />
                     <Label Content="Training alphabet:" FontSize="18"/>
                     <Label Name="pathLabel" Content="PATH: ???"/>
-                    <Button Name="selectFileButton" Content="Select file..." Click="selectFileButton_Click" />
+                    <Button Name="selectFileButton" Content="Select file..." Click="SelectFileButton_Click" />
                 </StackPanel>
             </ScrollViewer>
 
