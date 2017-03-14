@@ -258,5 +258,11 @@ namespace Deep_Neural_Text_Reader
         {
             neuronsList.Items.RemoveAt(neuronsList.SelectedIndex);
         }
+
+        private void TestSymbol_Click(object sender, RoutedEventArgs e)
+        {
+            TestSymbolWindow testSymbolWindow = new TestSymbolWindow();
+            testSymbolWindow.Show();
+        }
     }
 }

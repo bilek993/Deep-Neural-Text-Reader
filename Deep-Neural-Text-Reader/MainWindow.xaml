@@ -25,6 +25,9 @@
             <MenuItem Header="_Learning">
                 <MenuItem Header="Start learning" Click="MenuItemLearn_Click" />
             </MenuItem>
+            <MenuItem Header="_Testing">
+                <MenuItem Header="Test one symbol" Click="TestSymbol_Click" />
+            </MenuItem>
         </Menu>
         
         <Grid Grid.Row="1">
