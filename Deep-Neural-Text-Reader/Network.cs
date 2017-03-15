@@ -17,7 +17,7 @@ namespace Deep_Neural_Text_Reader
 
         private IActivationFunction activationFunction;
         private ActivationNetwork network;
-        private LevenbergMarquardtLearning teacher;
+        private ParallelResilientBackpropagationLearning teacher;
 
         private int learningLoopIterator;
 
@@ -62,10 +62,8 @@ namespace Deep_Neural_Text_Reader
 
             activationFunction = new BipolarSigmoidFunction();
             network = new ActivationNetwork(activationFunction, inputsCount, neuronsCount);
-            teacher = new LevenbergMarquardtLearning(network)
-            {
-                UseRegularization = false
-            };
+            teacher = new ParallelResilientBackpropagationLearning(network);
+
             learningLoopIterator = 0;
         }
 
@@ -103,10 +101,7 @@ namespace Deep_Neural_Text_Reader
         {
             network = (ActivationNetwork)ActivationNetwork.Load(fileName);
 
-            teacher = new LevenbergMarquardtLearning(network)
-            {
-                UseRegularization = false
-            };
+            teacher = new ParallelResilientBackpropagationLearning(network);
 
             inputsCount = network.Layers[0].InputsCount;
             neuronsCount = new int[network.Layers.Length];
