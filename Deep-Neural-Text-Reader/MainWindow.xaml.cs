@@ -110,13 +110,6 @@ namespace Deep_Neural_Text_Reader
             network.iterationCount = Convert.ToInt32(iterationsCount);
 
             network.Learn(inputsForLearn, outputsForLearn);
-
-            double[] answers = network.CalculateAnswer(inputsForLearn).GetColumn(0);
-            int[] answers2 = new int[answers.Length];
-            for (int j = 0; j < answers.Length; ++j)
-            {
-                answers2[j] = (int)Math.Round(answers[j]);
-            }
         }
 
         private int[] GetHiddenLayers()

@@ -84,6 +84,11 @@ namespace Deep_Neural_Text_Reader
             return input.Apply(network.Compute);
         }
 
+        public double[] CalculateAnswer(double[] input)
+        {
+            return network.Compute(input);
+        }
+
         public int CalculateProgress()
         {
             return (learningLoopIterator*100)/iterationCount;
