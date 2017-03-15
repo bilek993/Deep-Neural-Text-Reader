@@ -40,7 +40,7 @@ namespace Deep_Neural_Text_Reader
         {
             InitializeComponent();
 
-            TimerInitializer();
+            TimersInitializer();
             SetSystemMonitor();
             InitializeLinearChart();
         }
@@ -58,18 +58,27 @@ namespace Deep_Neural_Text_Reader
             linearChartOfLearning.Series = errorCollections;
         }
 
-        private void TimerInitializer()
+        private void TimersInitializer()
         {
-            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-            timer.Interval = (1000);
-            timer.Tick += new EventHandler(TimerTick);
-            timer.Start();
+            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
+            timer1.Interval = (1000);
+            timer1.Tick += new EventHandler(TimerTickSlow);
+            timer1.Start();
+            System.Windows.Forms.Timer timer2 = new System.Windows.Forms.Timer();
+            timer2.Interval = (10);
+            timer2.Tick += new EventHandler(TimerTickFast);
+            timer2.Start();
         }
 
-        private void TimerTick(object sender, EventArgs e)
+        private void TimerTickSlow(object sender, EventArgs e)
         {
             UpdateCpuAndRam();
             UpdateProgress();
+            UpdateLearningGraph();
+        }
+
+        private void TimerTickFast(object sender, EventArgs e)
+        {
             UpdateLearningGraph();
         }
 
