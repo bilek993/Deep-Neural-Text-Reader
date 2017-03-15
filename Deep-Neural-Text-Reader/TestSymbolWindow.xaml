@@ -29,13 +29,15 @@
         <Image Name="imagePreview" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Grid.RowSpan="5" Margin="10" />
 
         <WrapPanel Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="4">
+            <Button Content="Clear drawing" Margin="10" Click="ClearDrawing_Click" />
+            <Button Content="Drawing to image" Margin="10" Click="DrawingToImage_Click" />
             <Button Content="Select file..." Margin="10" Click="SelectFileButton_Click" />
             <Button Content="Test symbol" Margin="10" Click="TestSymbolButton_Click" />
         </WrapPanel>
 
         <Label Name="calculatedValue" Content="Calculated value: ???" FontSize="24" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="4" Margin="2" />
 
-        <lvc:PieChart LegendLocation="Bottom" Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="4" Grid.RowSpan="3">
+        <lvc:PieChart LegendLocation="Bottom" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3">
             <lvc:PieChart.Series>
                 <lvc:PieSeries Title="???" Values="3" DataLabels="True" PushOut="20"/>
                 <lvc:PieSeries Title="???" Values="1" DataLabels="True" />
@@ -43,6 +45,9 @@
                 <lvc:PieSeries Title="???" Values="1" DataLabels="True" />
             </lvc:PieChart.Series>
         </lvc:PieChart>
+        
+        <InkCanvas Name="inkDrawing" Grid.Column="2" HorizontalAlignment="Left" Height="160" Margin="10,10,10,10" VerticalAlignment="Top" Width="90"/>
+        <Rectangle Stroke="Black" Grid.Column="2" HorizontalAlignment="Left" Height="170" Margin="5,5,5,5" VerticalAlignment="Top" Width="100"/>
 
     </Grid>
 </Window>

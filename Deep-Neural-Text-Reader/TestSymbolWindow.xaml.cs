@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,13 @@ namespace Deep_Neural_Text_Reader
             InitializeComponent();
 
             this.network = network;
+            setDrawingParameters(25);
+        }
+
+        private void setDrawingParameters(int drawingSize)
+        {
+            inkDrawing.DefaultDrawingAttributes.Width = drawingSize;
+            inkDrawing.DefaultDrawingAttributes.Height = drawingSize;
         }
 
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
@@ -94,6 +102,16 @@ namespace Deep_Neural_Text_Reader
             }
 
             return c;
+        }
+
+        private void ClearDrawing_Click(object sender, RoutedEventArgs e)
+        {
+            inkDrawing.Strokes.Clear();
+        }
+
+        private void DrawingToImage_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
