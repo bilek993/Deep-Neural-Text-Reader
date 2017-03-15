@@ -22,7 +22,7 @@ namespace Deep_Neural_Text_Reader
     public partial class TestSymbolWindow : Window
     {
         private Network network;
-        private Bitmap loadetImage;
+        private Bitmap loadedImage;
 
         public TestSymbolWindow(Network network)
         {
@@ -56,7 +56,7 @@ namespace Deep_Neural_Text_Reader
                     src.EndInit();
                     imagePreview.Source = src;
 
-                    loadetImage = new Bitmap(fileName);
+                    loadedImage = new Bitmap(fileName);
                 }
                 catch (Exception exception)
                 {
@@ -68,12 +68,12 @@ namespace Deep_Neural_Text_Reader
         private void TestSymbolButton_Click(object sender, RoutedEventArgs e)
         {
             double[] input = new double[network.InputsCount];
-            for (int i = 0; i < loadetImage.Height; ++i)
+            for (int i = 0; i < loadedImage.Height; ++i)
             {
-                for (int j = 0; j < loadetImage.Width; ++j)
+                for (int j = 0; j < loadedImage.Width; ++j)
                 {
-                    System.Drawing.Color pixel = loadetImage.GetPixel(j, i);
-                    input[i * loadetImage.Width + j] = 1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0;
+                    System.Drawing.Color pixel = loadedImage.GetPixel(j, i);
+                    input[i * loadedImage.Width + j] = 1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0;
                 }
             }
 
