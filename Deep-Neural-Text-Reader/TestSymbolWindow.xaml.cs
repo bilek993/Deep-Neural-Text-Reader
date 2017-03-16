@@ -79,6 +79,7 @@ namespace Deep_Neural_Text_Reader
 
             double[] output = network.CalculateAnswer(input);
             char answer = ConvertOutputArrayToChar(output);
+            DrawGraph(output);
 
             calculatedValue.Content = "Calculated value: " + answer;
         }
@@ -91,17 +92,78 @@ namespace Deep_Neural_Text_Reader
                 if (output[i] > output[maxIndex])
                     maxIndex = i;
             }
+            char c = IndexToCharFromNetwork(maxIndex);
+
+            return c;
+        }
+
+        private char IndexToCharFromNetwork(int index)
+        {
             char c = '?';
-            if (maxIndex < 26)
+            if (index < 26)
             {
-                c = (char)('A' + maxIndex);
+                c = (char)('A' + index);
             }
             else
             {
-                c = (char)('0' + maxIndex - 26);
+                c = (char)('0' + index - 26);
             }
 
             return c;
+        }
+
+        private void DrawGraph(double[] output)
+        {
+            int maxIndex = 0;
+            double[] graphValues = new double[4];
+
+            for (int i = 1; i < output.Length; ++i)
+            {
+                if (output[i] > output[maxIndex])
+                    maxIndex = i;
+            }
+            pieValue1.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue1.Values[0] = output[maxIndex];
+            output[maxIndex] = -1;
+
+
+            maxIndex = 0;
+            graphValues = new double[4];
+
+            for (int i = 1; i < output.Length; ++i)
+            {
+                if (output[i] > output[maxIndex])
+                    maxIndex = i;
+            }
+            pieValue2.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue2.Values[0] = output[maxIndex];
+            output[maxIndex] = -1;
+
+
+            maxIndex = 0;
+            graphValues = new double[4];
+
+            for (int i = 1; i < output.Length; ++i)
+            {
+                if (output[i] > output[maxIndex])
+                    maxIndex = i;
+            }
+            pieValue3.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue3.Values[0] = output[maxIndex];
+            output[maxIndex] = -1;
+
+
+            maxIndex = 0;
+            graphValues = new double[4];
+
+            for (int i = 1; i < output.Length; ++i)
+            {
+                if (output[i] > output[maxIndex])
+                    maxIndex = i;
+            }
+            pieValue4.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue4.Values[0] = output[maxIndex];
+            output[maxIndex] = -1;
         }
 
         private void ClearDrawing_Click(object sender, RoutedEventArgs e)

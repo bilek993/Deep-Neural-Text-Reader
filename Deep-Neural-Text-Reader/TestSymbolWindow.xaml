@@ -39,10 +39,10 @@
 
         <lvc:PieChart LegendLocation="Bottom" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3">
             <lvc:PieChart.Series>
-                <lvc:PieSeries Title="???" Values="3" DataLabels="True" PushOut="20"/>
-                <lvc:PieSeries Title="???" Values="1" DataLabels="True" />
-                <lvc:PieSeries Title="???" Values="1" DataLabels="True" />
-                <lvc:PieSeries Title="???" Values="1" DataLabels="True" />
+                <lvc:PieSeries Name="pieValue1" Title="???" Values="0" DataLabels="True" PushOut="20"/>
+                <lvc:PieSeries Name="pieValue2" Title="???" Values="0" DataLabels="True" />
+                <lvc:PieSeries Name="pieValue3" Title="???" Values="0" DataLabels="True" />
+                <lvc:PieSeries Name="pieValue4" Title="???" Values="0" DataLabels="True" />
             </lvc:PieChart.Series>
         </lvc:PieChart>
         
