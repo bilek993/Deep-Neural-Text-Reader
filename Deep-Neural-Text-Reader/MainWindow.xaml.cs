@@ -263,8 +263,15 @@ namespace Deep_Neural_Text_Reader
 
         private void TestSymbol_Click(object sender, RoutedEventArgs e)
         {
-            TestSymbolWindow testSymbolWindow = new TestSymbolWindow(network);
-            testSymbolWindow.Show();
+            if (network != null)
+            {
+                TestSymbolWindow testSymbolWindow = new TestSymbolWindow(network);
+                testSymbolWindow.Show();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Cannot begin tests without network.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }
