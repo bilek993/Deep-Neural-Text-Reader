@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -109,9 +110,66 @@ namespace Deep_Neural_Text_Reader
             inkDrawing.Strokes.Clear();
         }
 
-        private void DrawingToImage_Click(object sender, RoutedEventArgs e)
+        private void TestSymbolFromDrawing_Click(object sender, RoutedEventArgs e)
         {
+            Bitmap bitmap = CreateBitmapFromInkCanvas(inkDrawing);
+            loadedImage = new Bitmap(bitmap, 9, 16);
 
+            imagePreview.Source = ConvertBitmapToSource(loadedImage);
+            
+
+            double[] input = new double[network.InputsCount];
+            for (int i = 0; i < loadedImage.Height; ++i)
+            {
+                for (int j = 0; j < loadedImage.Width; ++j)
+                {
+                    System.Drawing.Color pixel = loadedImage.GetPixel(j, i);
+                    input[i * loadedImage.Width + j] = 1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0;
+                }
+            }
+
+            double[] output = network.CalculateAnswer(input);
+            char answer = ConvertOutputArrayToChar(output);
+
+            calculatedValue.Content = "Calculated value: " + answer;
+        }
+
+        private Bitmap CreateBitmapFromInkCanvas(InkCanvas canvas)
+        {
+            RenderTargetBitmap rtb = new RenderTargetBitmap((int)canvas.Width, (int)canvas.Height, 96d, 96d, PixelFormats.Default);
+            inkDrawing.Measure(new System.Windows.Size((int)canvas.Width, (int)canvas.Height));
+            inkDrawing.Arrange(new Rect(new System.Windows.Size((int)canvas.Width, (int)canvas.Height)));
+
+            rtb.Render(inkDrawing);
+
+            BmpBitmapEncoder encoder = new BmpBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(rtb));
+            byte[] bitmapBytes;
+
+            Bitmap bm;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                encoder.Save(ms);
+                ms.Position = 0;
+                bitmapBytes = ms.ToArray();
+
+                bm = new Bitmap(ms);
+            }
+
+            return bm;
+        }
+
+        private BitmapImage ConvertBitmapToSource(Bitmap bitmap)
+        {
+            MemoryStream ms = new MemoryStream();
+            ((System.Drawing.Bitmap)loadedImage).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            BitmapImage image = new BitmapImage();
+            image.BeginInit();
+            ms.Seek(0, SeekOrigin.Begin);
+            image.StreamSource = ms;
+            image.EndInit();
+
+            return image;
         }
     }
 }
