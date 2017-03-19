@@ -32,7 +32,7 @@
             <Button Content="Clear drawing" Margin="10" Click="ClearDrawing_Click" />
             <Button Content="Test symbol from drawing" Margin="10" Click="TestSymbolFromDrawing_Click" />
             <Button Content="Select file..." Margin="10" Click="SelectFileButton_Click" />
-            <Button Content="Test symbol from image" Margin="10" Click="TestSymbolButton_Click" />
+            <Button Content="Test symbol from image" Margin="10" Click="TestSymbolFromImageButton_Click" />
         </WrapPanel>
 
         <Label Name="calculatedValue" Content="Calculated value: ???" FontSize="24" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="4" Margin="2" />

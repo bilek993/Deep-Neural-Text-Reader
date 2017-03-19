@@ -66,23 +66,9 @@ namespace Deep_Neural_Text_Reader
             }
         }
 
-        private void TestSymbolButton_Click(object sender, RoutedEventArgs e)
+        private void TestSymbolFromImageButton_Click(object sender, RoutedEventArgs e)
         {
-            double[] input = new double[network.InputsCount];
-            for (int i = 0; i < loadedImage.Height; ++i)
-            {
-                for (int j = 0; j < loadedImage.Width; ++j)
-                {
-                    System.Drawing.Color pixel = loadedImage.GetPixel(j, i);
-                    input[i * loadedImage.Width + j] = 1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0;
-                }
-            }
-
-            double[] output = network.CalculateAnswer(input);
-            char answer = ConvertOutputArrayToChar(output);
-            DrawGraph(output);
-
-            calculatedValue.Content = "Calculated value: " + answer;
+            TestSymbol();
         }
 
         private char ConvertOutputArrayToChar(double[] output)
@@ -178,8 +164,13 @@ namespace Deep_Neural_Text_Reader
             loadedImage = new Bitmap(bitmap, 9, 16);
 
             imagePreview.Source = ConvertBitmapToSource(loadedImage);
-            
 
+
+            TestSymbol();
+        }
+
+        private void TestSymbol()
+        {
             double[] input = new double[network.InputsCount];
             for (int i = 0; i < loadedImage.Height; ++i)
             {
@@ -192,6 +183,7 @@ namespace Deep_Neural_Text_Reader
 
             double[] output = network.CalculateAnswer(input);
             char answer = ConvertOutputArrayToChar(output);
+            DrawGraph(output);
 
             calculatedValue.Content = "Calculated value: " + answer;
         }
