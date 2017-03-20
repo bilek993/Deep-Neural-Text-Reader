@@ -12,7 +12,7 @@ namespace Deep_Neural_Text_Reader
     class LearnDataLoader
     {
         private double[][] inputs;
-        private int[][] outputs;
+        private double[][] outputs;
 
         public double[][] Inputs
         {
@@ -22,7 +22,7 @@ namespace Deep_Neural_Text_Reader
             }
         }
 
-        public int[][] Outputs
+        public double[][] Outputs
         {
             get
             {
@@ -49,7 +49,7 @@ namespace Deep_Neural_Text_Reader
                 }
 
                 inputs = new double[linesCount][];
-                outputs = new int[linesCount][];
+                outputs = new double[linesCount][];
 
                 int i = 0;
                 foreach (string line in lines)
@@ -98,18 +98,18 @@ namespace Deep_Neural_Text_Reader
             }
         }
 
-        private int[] ConvertCharToIntArray(char c)
+        private double[] ConvertCharToIntArray(char c)
         {
-            int[] array = new int[Network.OUTPUTS_COUNT];
+            double[] array = new double[Network.OUTPUTS_COUNT];
             for (int i = 0; i < Network.OUTPUTS_COUNT; ++i)
             {
-                array[i] = 0;
+                array[i] = 0.1;
             }
 
             if (Char.IsLetter(c))
-                array[c - 'A'] = 1;
+                array[c - 'A'] = 0.9;
             else if (Char.IsDigit(c))
-                array[26 + c - '0'] = 1;
+                array[26 + c - '0'] = 0.9;
 
             return array;
         }

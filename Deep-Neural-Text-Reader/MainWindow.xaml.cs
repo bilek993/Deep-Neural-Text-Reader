@@ -34,7 +34,7 @@ namespace Deep_Neural_Text_Reader
         private Network network;
 
         private double[][] inputsForLearn;
-        private int[][] outputsForLearn;
+        private double[][] outputsForLearn;
 
         public MainWindow()
         {

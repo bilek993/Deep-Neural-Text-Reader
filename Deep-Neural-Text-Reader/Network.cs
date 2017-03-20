@@ -61,7 +61,7 @@ namespace Deep_Neural_Text_Reader
         {
             this.inputsCount = inputsCount;
             this.neuronsCount = neuronsCount;
-
+            
             activationFunction = new SigmoidFunction();
             network = new ActivationNetwork(activationFunction, inputsCount, neuronsCount);
             new NguyenWidrow(network).Randomize();
@@ -70,13 +70,13 @@ namespace Deep_Neural_Text_Reader
             learningLoopIterator = 0;
         }
 
-        public void Learn(double[][] input, int[][] output)
+        public void Learn(double[][] input, double[][] output)
         {
-            double[][] y = output.ToDouble();
+            //double[][] y = output.ToDouble();
 
             for (learningLoopIterator = 0; learningLoopIterator < iterationCount; ++learningLoopIterator)
             {
-                error = teacher.RunEpoch(input, y);
+                error = teacher.RunEpoch(input, output);
             }
         }
         
