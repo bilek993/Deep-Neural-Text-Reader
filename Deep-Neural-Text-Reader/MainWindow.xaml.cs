@@ -258,7 +258,8 @@ namespace Deep_Neural_Text_Reader
 
         private void RemoveHiddenLayer_Click(object sender, RoutedEventArgs e)
         {
-            neuronsList.Items.RemoveAt(neuronsList.SelectedIndex);
+            if (neuronsList.SelectedItem != null)
+                neuronsList.Items.RemoveAt(neuronsList.SelectedIndex);
         }
 
         private void TestSymbol_Click(object sender, RoutedEventArgs e)
