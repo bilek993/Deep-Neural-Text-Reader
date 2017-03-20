@@ -8,6 +8,8 @@ using Accord.Math;
 using Accord.Neuro.Learning;
 using AForge.Neuro;
 using Accord.Controls;
+using Accord.Neuro;
+using AForge.Neuro.Learning;
 
 namespace Deep_Neural_Text_Reader
 {
@@ -60,8 +62,9 @@ namespace Deep_Neural_Text_Reader
             this.inputsCount = inputsCount;
             this.neuronsCount = neuronsCount;
 
-            activationFunction = new BipolarSigmoidFunction();
+            activationFunction = new SigmoidFunction();
             network = new ActivationNetwork(activationFunction, inputsCount, neuronsCount);
+            new NguyenWidrow(network).Randomize();
             teacher = new ParallelResilientBackpropagationLearning(network);
 
             learningLoopIterator = 0;
