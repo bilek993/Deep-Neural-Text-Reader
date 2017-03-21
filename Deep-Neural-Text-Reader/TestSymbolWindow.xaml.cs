@@ -177,7 +177,7 @@ namespace Deep_Neural_Text_Reader
                 for (int j = 0; j < loadedImage.Width; ++j)
                 {
                     System.Drawing.Color pixel = loadedImage.GetPixel(j, i);
-                    input[i * loadedImage.Width + j] = 1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0;
+                    input[i * loadedImage.Width + j] = (1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0) -0.5;
                 }
             }
 

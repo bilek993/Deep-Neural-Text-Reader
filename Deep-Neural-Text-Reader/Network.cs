@@ -19,7 +19,7 @@ namespace Deep_Neural_Text_Reader
 
         private IActivationFunction activationFunction;
         private ActivationNetwork network;
-        private ParallelResilientBackpropagationLearning teacher;
+        private BackPropagationLearning teacher;
 
         private int learningLoopIterator;
 
@@ -61,11 +61,11 @@ namespace Deep_Neural_Text_Reader
         {
             this.inputsCount = inputsCount;
             this.neuronsCount = neuronsCount;
-            
+
             activationFunction = new SigmoidFunction();
             network = new ActivationNetwork(activationFunction, inputsCount, neuronsCount);
             new NguyenWidrow(network).Randomize();
-            teacher = new ParallelResilientBackpropagationLearning(network);
+            teacher = new BackPropagationLearning(network);
 
             learningLoopIterator = 0;
         }
@@ -104,7 +104,7 @@ namespace Deep_Neural_Text_Reader
         {
             network = (ActivationNetwork)ActivationNetwork.Load(fileName);
 
-            teacher = new ParallelResilientBackpropagationLearning(network);
+            teacher = new BackPropagationLearning(network);
 
             inputsCount = network.Layers[0].InputsCount;
             neuronsCount = new int[network.Layers.Length];

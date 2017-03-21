@@ -84,7 +84,7 @@ namespace Deep_Neural_Text_Reader
                     for (int j = 0; j < bitmap.Width; ++j)
                     {
                         System.Drawing.Color pixel = bitmap.GetPixel(j, i);
-                        pixels[i * bitmap.Width + j] = 1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0;
+                        pixels[i * bitmap.Width + j] = (1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0) - 0.5;
                     }
                 }
 
