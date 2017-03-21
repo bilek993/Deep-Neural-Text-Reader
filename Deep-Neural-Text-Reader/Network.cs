@@ -62,10 +62,17 @@ namespace Deep_Neural_Text_Reader
             this.inputsCount = inputsCount;
             this.neuronsCount = neuronsCount;
 
-            activationFunction = new SigmoidFunction();
+            activationFunction = new HyperbolicTangentFunction();
+            IActivationFunction activationFunction2 = new SigmoidFunction();
             network = new ActivationNetwork(activationFunction, inputsCount, neuronsCount);
             new NguyenWidrow(network).Randomize();
             teacher = new BackPropagationLearning(network);
+
+            for (int i = 0; i < network.Layers.Length - 1; ++i)
+            {
+                ((ActivationLayer)network.Layers[i]).SetActivationFunction(activationFunction);
+            }
+            ((ActivationLayer)network.Layers[network.Layers.Length - 1]).SetActivationFunction(activationFunction2);
 
             learningLoopIterator = 0;
         }
