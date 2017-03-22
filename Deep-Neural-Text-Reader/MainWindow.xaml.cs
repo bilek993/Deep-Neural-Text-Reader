@@ -288,7 +288,7 @@ namespace Deep_Neural_Text_Reader
         {
             if (IsAnyNetwork())
             {
-                TestWordWindow testWordWindow = new TestWordWindow();
+                TestWordWindow testWordWindow = new TestWordWindow(network);
                 testWordWindow.Show();
             }
         }

@@ -17,8 +17,13 @@ namespace Deep_Neural_Text_Reader {
     /// Interaction logic for TestWordWindow.xaml
     /// </summary>
     public partial class TestWordWindow : Window {
-        public TestWordWindow() {
+
+        Network network;
+
+        public TestWordWindow(Network network) {
             InitializeComponent();
+
+            this.network = network;
         }
     }
 }

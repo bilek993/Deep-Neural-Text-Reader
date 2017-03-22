@@ -8,6 +8,29 @@
         Title="Deep Neural Text Reader (Testing)" Height="720" Width="1280"
         MinHeight="360" MinWidth="640">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="5" Grid.ColumnSpan="3" />
+        <Rectangle Stroke="Black" Margin="5" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Grid.RowSpan="4" />
+
+        <Button Content="Select file..." Grid.Row="3" Grid.Column="2" Width="90" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" />
+        <Label Content="Detected word:" Grid.Row="4" Grid.ColumnSpan="2" FontSize="26" />
+
+        <StackPanel Grid.Column="2" Grid.Row="4">
+            <Label Content="Suggestions" FontSize="15"/>
+            <Expander/>
+        </StackPanel>
+
     </Grid>
 </Window>
