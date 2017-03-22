@@ -116,6 +116,9 @@
     <Compile Include="TestSymbolWindow.xaml.cs">
       <DependentUpon>TestSymbolWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestWordWindow.xaml.cs">
+      <DependentUpon>TestWordWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -129,6 +132,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="TestSymbolWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

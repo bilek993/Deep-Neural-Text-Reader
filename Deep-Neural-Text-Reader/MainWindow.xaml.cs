@@ -262,16 +262,34 @@ namespace Deep_Neural_Text_Reader
                 neuronsList.Items.RemoveAt(neuronsList.SelectedIndex);
         }
 
-        private void TestSymbol_Click(object sender, RoutedEventArgs e)
+        private bool IsAnyNetwork()
         {
             if (network != null)
             {
-                TestSymbolWindow testSymbolWindow = new TestSymbolWindow(network);
-                testSymbolWindow.Show();
+                return true;
             }
             else
             {
                 System.Windows.MessageBox.Show("Cannot begin tests without network.", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+        }
+
+        private void TestSymbol_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsAnyNetwork())
+            {
+                TestSymbolWindow testSymbolWindow = new TestSymbolWindow(network);
+                testSymbolWindow.Show();
+            }
+        }
+
+        private void TestWord_Click(object sender, RoutedEventArgs e)
+        {
+            if (IsAnyNetwork())
+            {
+                TestWordWindow testWordWindow = new TestWordWindow();
+                testWordWindow.Show();
             }
         }
     }

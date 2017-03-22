@@ -27,6 +27,7 @@
             </MenuItem>
             <MenuItem Header="_Testing">
                 <MenuItem Header="Test one symbol" Click="TestSymbol_Click" />
+                <MenuItem Header="Test word" Click="TestWord_Click"/>
             </MenuItem>
         </Menu>
         
