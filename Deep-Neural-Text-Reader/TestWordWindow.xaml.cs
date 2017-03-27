@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,10 +22,39 @@ namespace Deep_Neural_Text_Reader {
 
         Network network;
 
+        private Bitmap loadedImage;
+
         public TestWordWindow(Network network) {
             InitializeComponent();
 
             this.network = network;
+        }
+
+        private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files (*.bmp, *.jpg, *.jpeg, *.jpe, *.png) | *.bmp; *.jpg; *.jpeg; *.jpe; *.png|All files|*.*";
+            dialog.InitialDirectory = Environment.CurrentDirectory;
+
+            if (dialog.ShowDialog() == true)
+            {
+                string fileName = dialog.FileName;
+
+                try
+                {
+                    BitmapImage src = new BitmapImage();
+                    src.BeginInit();
+                    src.UriSource = new Uri(fileName, UriKind.RelativeOrAbsolute);
+                    src.EndInit();
+                    imagePreview.Source = src;
+
+                    loadedImage = new Bitmap(fileName);
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Cannot open file: " + fileName, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Deep_Neural_Text_Reader
 {
+    [Serializable]
     public class HyperbolicTangentFunction : IActivationFunction
     {
         public double Derivative(double x)

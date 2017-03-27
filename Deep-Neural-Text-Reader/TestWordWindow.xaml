@@ -21,10 +21,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <Image VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="5" Grid.ColumnSpan="3" />
+        <Image Name="imagePreview" VerticalAlignment="Stretch" Grid.RowSpan="4" Margin="5" Grid.ColumnSpan="3" />
         <Rectangle Stroke="Black" Margin="5" VerticalAlignment="Stretch" Grid.ColumnSpan="3" Grid.RowSpan="4" />
 
-        <Button Content="Select file..." Grid.Row="3" Grid.Column="2" Width="90" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" />
+        <Button Content="Select file..." Grid.Row="3" Grid.Column="2" Width="90" Height="25" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" Click="SelectFileButton_Click" />
 
         <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
             <Label Content="Detected word:" FontSize="26" />
