@@ -38,6 +38,7 @@ namespace Deep_Neural_Text_Reader {
             if (dialog.ShowDialog() == true)
             {
                 string fileName = dialog.FileName;
+                Bitmap loadedImage;
 
                 try
                 {
@@ -47,14 +48,18 @@ namespace Deep_Neural_Text_Reader {
                     src.EndInit();
                     imagePreview.Source = src;
 
-                    Bitmap loadedImage = new Bitmap(fileName);
-                    imageCutter = new ImageCutter(loadedImage);
-                    imageCutter.FindMinMaxlValue();
+                    loadedImage = new Bitmap(fileName);
                 }
                 catch (Exception exception)
                 {
                     MessageBox.Show("Cannot open file: " + fileName, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
                 }
+
+                imageCutter = new ImageCutter(loadedImage);
+                imageCutter.FindMinMaxlValue();
+                imageCutter.CutWord();
+                MessageBox.Show(imageCutter.listOfLetters.Count.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
