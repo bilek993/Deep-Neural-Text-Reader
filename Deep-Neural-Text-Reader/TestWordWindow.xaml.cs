@@ -21,8 +21,7 @@ namespace Deep_Neural_Text_Reader {
     public partial class TestWordWindow : Window {
 
         Network network;
-
-        private Bitmap loadedImage;
+        ImageCutter imageCutter;
 
         public TestWordWindow(Network network) {
             InitializeComponent();
@@ -48,7 +47,9 @@ namespace Deep_Neural_Text_Reader {
                     src.EndInit();
                     imagePreview.Source = src;
 
-                    loadedImage = new Bitmap(fileName);
+                    Bitmap loadedImage = new Bitmap(fileName);
+                    imageCutter = new ImageCutter(loadedImage);
+                    imageCutter.FindMinMaxlValue();
                 }
                 catch (Exception exception)
                 {

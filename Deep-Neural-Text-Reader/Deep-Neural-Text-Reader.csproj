@@ -109,6 +109,7 @@
     </ApplicationDefinition>
     <Compile Include="ConfigFileManager.cs" />
     <Compile Include="HyperbolicTangentFunction.cs" />
+    <Compile Include="ImageCutter.cs" />
     <Compile Include="LearnDataLoader.cs" />
     <Compile Include="NeuronItem.cs" />
     <Compile Include="SystemMonitor.cs" />
