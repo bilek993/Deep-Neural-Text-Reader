@@ -216,7 +216,7 @@ namespace Deep_Neural_Text_Reader
         private BitmapImage ConvertBitmapToSource(Bitmap bitmap)
         {
             MemoryStream ms = new MemoryStream();
-            ((System.Drawing.Bitmap)loadedImage).Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
             BitmapImage image = new BitmapImage();
             image.BeginInit();
             ms.Seek(0, SeekOrigin.Begin);

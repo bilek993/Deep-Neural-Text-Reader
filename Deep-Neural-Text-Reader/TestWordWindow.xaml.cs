@@ -59,7 +59,6 @@ namespace Deep_Neural_Text_Reader {
                 imageCutter = new ImageCutter(loadedImage);
                 imageCutter.FindMinMaxlValue();
                 imageCutter.CutWord();
-                MessageBox.Show(imageCutter.listOfLetters.Count.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
