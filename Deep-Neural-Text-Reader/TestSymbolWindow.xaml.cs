@@ -71,34 +71,6 @@ namespace Deep_Neural_Text_Reader
             TestSymbol();
         }
 
-        private char ConvertOutputArrayToChar(double[] output)
-        {
-            int maxIndex = 0;
-            for (int i = 1; i < output.Length; ++i)
-            {
-                if (output[i] > output[maxIndex])
-                    maxIndex = i;
-            }
-            char c = IndexToCharFromNetwork(maxIndex);
-
-            return c;
-        }
-
-        private char IndexToCharFromNetwork(int index)
-        {
-            char c = '?';
-            if (index < 26)
-            {
-                c = (char)('A' + index);
-            }
-            else
-            {
-                c = (char)('0' + index - 26);
-            }
-
-            return c;
-        }
-
         private void DrawGraph(double[] output)
         {
             int maxIndex = 0;
@@ -109,7 +81,7 @@ namespace Deep_Neural_Text_Reader
                 if (output[i] > output[maxIndex])
                     maxIndex = i;
             }
-            pieValue1.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue1.Title = network.IndexLetterToChar(maxIndex).ToString();
             pieValue1.Values[0] = output[maxIndex];
             output[maxIndex] = -1;
 
@@ -122,7 +94,7 @@ namespace Deep_Neural_Text_Reader
                 if (output[i] > output[maxIndex])
                     maxIndex = i;
             }
-            pieValue2.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue2.Title = network.IndexLetterToChar(maxIndex).ToString();
             pieValue2.Values[0] = output[maxIndex];
             output[maxIndex] = -1;
 
@@ -135,7 +107,7 @@ namespace Deep_Neural_Text_Reader
                 if (output[i] > output[maxIndex])
                     maxIndex = i;
             }
-            pieValue3.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue3.Title = network.IndexLetterToChar(maxIndex).ToString();
             pieValue3.Values[0] = output[maxIndex];
             output[maxIndex] = -1;
 
@@ -148,7 +120,7 @@ namespace Deep_Neural_Text_Reader
                 if (output[i] > output[maxIndex])
                     maxIndex = i;
             }
-            pieValue4.Title = IndexToCharFromNetwork(maxIndex).ToString();
+            pieValue4.Title = network.IndexLetterToChar(maxIndex).ToString();
             pieValue4.Values[0] = output[maxIndex];
             output[maxIndex] = -1;
         }
@@ -171,18 +143,10 @@ namespace Deep_Neural_Text_Reader
 
         private void TestSymbol()
         {
-            double[] input = new double[network.InputsCount];
-            for (int i = 0; i < loadedImage.Height; ++i)
-            {
-                for (int j = 0; j < loadedImage.Width; ++j)
-                {
-                    System.Drawing.Color pixel = loadedImage.GetPixel(j, i);
-                    input[i * loadedImage.Width + j] = (1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0) -0.5;
-                }
-            }
+            double[] input = network.BitmapToNetworkInput(loadedImage);
 
             double[] output = network.CalculateAnswer(input);
-            char answer = ConvertOutputArrayToChar(output);
+            char answer = network.NetworkOutputToChar(output);
             DrawGraph(output);
 
             calculatedValue.Content = "Calculated value: " + answer;

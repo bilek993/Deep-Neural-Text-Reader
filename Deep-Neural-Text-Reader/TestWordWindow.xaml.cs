@@ -59,6 +59,20 @@ namespace Deep_Neural_Text_Reader {
                 imageCutter = new ImageCutter(loadedImage);
                 imageCutter.FindMinMaxlValue();
                 imageCutter.CutWord();
+
+                StringBuilder wordStringBuilder = new StringBuilder("");
+                for (int i = 0; i < imageCutter.listOfLetters.Count; ++i)
+                {
+                    double[] input = network.BitmapToNetworkInput(imageCutter.listOfLetters[i]);
+
+                    double[] output = network.CalculateAnswer(input);
+                    char answer = network.NetworkOutputToChar(output);
+
+                    wordStringBuilder.Append(answer);
+                }
+
+                string word = wordStringBuilder.ToString();
+                detectedWordLabel.Content = detectedWordLabel.Content + " " + word;
             }
         }
     }

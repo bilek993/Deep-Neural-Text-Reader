@@ -10,6 +10,7 @@ using AForge.Neuro;
 using Accord.Controls;
 using Accord.Neuro;
 using AForge.Neuro.Learning;
+using System.Drawing;
 
 namespace Deep_Neural_Text_Reader
 {
@@ -86,7 +87,7 @@ namespace Deep_Neural_Text_Reader
                 error = teacher.RunEpoch(input, output);
             }
         }
-        
+
         public double[][] CalculateAnswer(double[][] input)
         {
             return input.Apply(network.Compute);
@@ -120,6 +121,49 @@ namespace Deep_Neural_Text_Reader
             {
                 neuronsCount[i] = network.Layers[i].Neurons.Length;
             }
+        }
+
+        public double[] BitmapToNetworkInput(Bitmap image)
+        {
+            double[] input = new double[InputsCount];
+            for (int i = 0; i < image.Height; ++i)
+            {
+                for (int j = 0; j < image.Width; ++j)
+                {
+                    System.Drawing.Color pixel = image.GetPixel(j, i);
+                    input[i * image.Width + j] = (1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0) - 0.5;
+                }
+            }
+
+            return input;
+        }
+
+        public char NetworkOutputToChar(double[] output)
+        {
+            int maxIndex = 0;
+            for (int i = 1; i < output.Length; ++i)
+            {
+                if (output[i] > output[maxIndex])
+                    maxIndex = i;
+            }
+            char c = IndexLetterToChar(maxIndex);
+
+            return c;
+        }
+
+        public char IndexLetterToChar(int index)
+        {
+            char c = '?';
+            if (index < 26)
+            {
+                c = (char)('A' + index);
+            }
+            else
+            {
+                c = (char)('0' + index - 26);
+            }
+
+            return c;
         }
     }
 }
