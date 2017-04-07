@@ -42,10 +42,6 @@ namespace Deep_Neural_Text_Reader {
                 foreach (string s in result.Suggestions)
                     suggestionsForExpander += string.Format("{0}\n", s);
             }
-            else
-            {
-                MessageBox.Show("There is no suggestions for this value.", "Parsing failed!", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
 
             expanderSuggestions.Content = suggestionsForExpander;
             expanderSuggestions.IsExpanded = true;
