@@ -29,6 +29,28 @@ namespace Deep_Neural_Text_Reader {
             this.network = network;
         }
 
+        private void VerifyWord(String valueToVerify)
+        {
+            string suggestionsForExpander = String.Empty;
+            TextBox txt = new TextBox();
+            txt.SpellCheck.IsEnabled = true;
+            txt.Text = valueToVerify.ToLower();
+            SpellingError result = txt.GetSpellingError(0);
+
+            if (result != null)
+            {
+                foreach (string s in result.Suggestions)
+                    suggestionsForExpander += string.Format("{0}\n", s);
+            }
+            else
+            {
+                MessageBox.Show("There is no suggestions for this value.", "Parsing failed!", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+
+            expanderSuggestions.Content = suggestionsForExpander;
+            expanderSuggestions.IsExpanded = true;
+        }
+
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -72,7 +94,8 @@ namespace Deep_Neural_Text_Reader {
                 }
 
                 string word = wordStringBuilder.ToString();
-                detectedWordLabel.Content = detectedWordLabel.Content + " " + word;
+                detectedWordLabel.Content = "Detected word: " + word;
+                VerifyWord(word);
             }
         }
     }
