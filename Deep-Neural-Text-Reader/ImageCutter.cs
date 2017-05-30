@@ -25,10 +25,7 @@ namespace Deep_Neural_Text_Reader
 
         private bool IsBlackPixel (Color pixel)
         {
-            if (1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0 > 0.25)
-                return true;
-            else
-                return false;
+            return 1 - (pixel.R + pixel.G + pixel.B) / 3.0 / 255.0 > 0.25;
         }
 
         public void FindMinMaxlValue()
