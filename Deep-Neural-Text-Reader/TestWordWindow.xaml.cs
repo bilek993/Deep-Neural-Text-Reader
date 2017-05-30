@@ -29,6 +29,24 @@ namespace Deep_Neural_Text_Reader {
             this.network = network;
         }
 
+        private void VerifyWord(String valueToVerify)
+        {
+            string suggestionsForExpander = String.Empty;
+            TextBox txt = new TextBox();
+            txt.SpellCheck.IsEnabled = true;
+            txt.Text = valueToVerify.ToLower();
+            SpellingError result = txt.GetSpellingError(0);
+
+            if (result != null)
+            {
+                foreach (string s in result.Suggestions)
+                    suggestionsForExpander += string.Format("{0}\n", s);
+            }
+
+            expanderSuggestions.Content = suggestionsForExpander;
+            expanderSuggestions.IsExpanded = true;
+        }
+
         private void SelectFileButton_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -59,7 +77,21 @@ namespace Deep_Neural_Text_Reader {
                 imageCutter = new ImageCutter(loadedImage);
                 imageCutter.FindMinMaxlValue();
                 imageCutter.CutWord();
-                MessageBox.Show(imageCutter.listOfLetters.Count.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                StringBuilder wordStringBuilder = new StringBuilder("");
+                for (int i = 0; i < imageCutter.listOfLetters.Count; ++i)
+                {
+                    double[] input = network.BitmapToNetworkInput(imageCutter.listOfLetters[i]);
+
+                    double[] output = network.CalculateAnswer(input);
+                    char answer = network.NetworkOutputToChar(output);
+
+                    wordStringBuilder.Append(answer);
+                }
+
+                string word = wordStringBuilder.ToString();
+                detectedWordLabel.Content = "Detected word: " + word;
+                VerifyWord(word);
             }
         }
     }

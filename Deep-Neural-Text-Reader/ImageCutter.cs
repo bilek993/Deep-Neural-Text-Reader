@@ -93,6 +93,49 @@ namespace Deep_Neural_Text_Reader
                     }
                 }
             }
+
+            ScaleLetters();
+        }
+
+        private void ScaleLetters()
+        {
+            for (int i = 0; i < listOfLetters.Count; ++i)
+            {
+                Bitmap letter = listOfLetters[i];
+
+                double w, h;
+                if ((double)letter.Width / letter.Height < 9.0 / 16.0)
+                {
+                    double x = letter.Height / 16.0;
+                    w = x * 9.0;
+                    h = letter.Height;
+                }
+                else
+                {
+                    double x = letter.Width / 9.0;
+                    h = x * 16.0;
+                    w = letter.Width;
+                }
+
+                double startX = (w - letter.Width) / 2.0;
+                double startY = (h - letter.Height) / 2.0;
+
+                Bitmap newLetter = new Bitmap((int)w, (int)h);
+                using (Graphics g = Graphics.FromImage(newLetter))
+                {
+                    g.FillRectangle(Brushes.White, new Rectangle(0, 0, (int)w, (int)h));
+                }
+
+                for (int x = 0; x < letter.Width; ++x)
+                {
+                    for (int y = 0; y < letter.Height; ++y)
+                    {
+                        newLetter.SetPixel((int)startX + x, (int)startY + y, letter.GetPixel(x, y));
+                    }
+                }
+
+                listOfLetters[i] = new Bitmap(newLetter, 9, 16);
+            }
         }
     }
 }
